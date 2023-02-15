@@ -6,7 +6,7 @@
 ![Главная](https://imdibil.ru/scheduler/assets/images/main.png)
 2. Страницы раздела "Профиль", где происходит кастомизация доски и просмотр статистики
 
-![Профиль](https://imdibil.ru/scheduler/assets/images/profile.png) 
+![Профиль](https://imdibil.ru/scheduler/assets/images/prof.png) 
 
 Пользователи могут кастомизировать внешний вид доски, поставить персональный фон, настроить доступы к своей доске для других пользователей, смотреть историю задач.
 ![Главная](https://imdibil.ru/scheduler/assets/images/access.png)
