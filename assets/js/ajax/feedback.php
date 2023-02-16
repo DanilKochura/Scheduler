@@ -22,6 +22,8 @@ $db->conn->query("INSERT into feedback_sched(user_id, email, text, type) values(
 $id = $db->conn->insert_id;
 
 sendEmail('kochura2017@yandex.ru', $name, $text, 'Новое обращение в тп №'.$id);
+sendEmail('vacbanny2016@yandex.ru', $name, $text, 'Новое обращение в тп №'.$id);
+sendEmail('v.ivanov@mzpo.education', $name, $text, 'Новое обращение в тп №'.$id);
 
 
 

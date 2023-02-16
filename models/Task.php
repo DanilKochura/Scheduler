@@ -22,6 +22,7 @@ class Task extends DB
 	public DateTime $time;
 	public DateTime $created_at;
 	public DateTime $updated_at;
+	public DateTime $finished_at;
 	public array $comments;
 
 	public int $priority;
@@ -66,6 +67,7 @@ class Task extends DB
         $this->time = new \DateTime($row['time'], new DateTimeZone('Europe/Moscow'));
         $this->created_at = new \DateTime($row['created_at'], new DateTimeZone('Europe/Moscow'));
         $this->updated_at = new \DateTime($row['updated_at'], new DateTimeZone('Europe/Moscow'));
+        $this->finished_at = new \DateTime($row['finished_at'], new DateTimeZone('Europe/Moscow'));
         if($row['created_by'] != $row['responsible'])
         {
             $this->created_by = $row['created_by'];

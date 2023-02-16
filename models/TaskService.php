@@ -34,6 +34,7 @@ class TaskService extends DB
                     $task->time = new \DateTime($row['time'], new DateTimeZone('Europe/Moscow'));
                     $task->created_at = new \DateTime($row['created_at'], new DateTimeZone('Europe/Moscow'));
                     $task->updated_at = new \DateTime($row['updated_at'], new DateTimeZone('Europe/Moscow'));
+                    $task->finished_at = new \DateTime($row['finished_at'], new DateTimeZone('Europe/Moscow'));
                     $task->priority = $row['priority'];
                     $diff = (new \DateTime('now', new DateTimeZone('Europe/Moscow')))->diff($task->created_at);
 

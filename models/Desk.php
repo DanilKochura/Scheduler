@@ -37,6 +37,7 @@ class Desk extends DB
 					$task->time = new \DateTime($row['time'], new DateTimeZone('Europe/Moscow'));
 					$task->created_at = new \DateTime($row['created_at'], new DateTimeZone('Europe/Moscow'));
 					$task->updated_at = new \DateTime($row['updated_at'], new DateTimeZone('Europe/Moscow'));
+					$task->finished_at = new \DateTime($row['finished_at'], new DateTimeZone('Europe/Moscow'));
 					$task->priority = $row['priority'];
 					$diff = (new \DateTime('now', new DateTimeZone('Europe/Moscow')))->diff($task->created_at);
                     if($row['created_by'] != $_SESSION['user'])
@@ -60,6 +61,7 @@ class Desk extends DB
 		}
 		$this->new = $tasks[1];
 		$this->work = $tasks[2];
+		array_multisort(array_column($tasks[3], 'finished_at'), SORT_DESC,$tasks[3]);
 		$this->done = $tasks[3];
 
 

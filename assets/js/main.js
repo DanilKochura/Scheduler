@@ -254,7 +254,11 @@ $(document).ready(function () {
 
 function getPriority(number)
 {
-	if(number> 70)
+	if(number> 80)
+	{
+		return ['Очень высокий', 'text-red-900'];
+	}
+	else if(number> 60)
 	{
 		return ['Высокий', 'text-danger'];
 	}else if(number> 35)

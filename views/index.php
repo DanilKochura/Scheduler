@@ -3,6 +3,7 @@
 $t1 = count($tasks->new);
 $t2 = count($tasks->work);
 $t3 = count($tasks->done);
+
 ?>
 
 	<div class="container">
@@ -36,7 +37,6 @@ $t3 = count($tasks->done);
                              data-ajax-update-url="assets/js/ajax/sort.php"
                              data-ajax-update-identifier="client_list_1"
                              data-ajax-update-params="['action','update']"
-                             data-update-toast-success="Order Saved!"
                              data-update-toast-position="bottom-center"
 												data-type="1">
 						<?php foreach($tasks->new as $task): ?>
@@ -52,22 +52,23 @@ $t3 = count($tasks->done);
                                         </div>
 									</div>
 									<div class="row">
-										<time class="sow-util-timeago text-secondary fs-7"
-													datetime="<?=$task->created_at->format('Y-m-d\TH:i:d')?>"
-													data-live="true"
-													data-lang='{
-                                            "seconds"	 : "Несколько секунд назад",
-                                            "minute"		: "Около минуты назад",
-                                            "minutes"	 : "%d минут назад",
-                                            "hour"			: "Около часа назад",
-                                            "hours"		 : "Около %d часов назад",
-                                            "day"			 : "Вчера",
-                                            "days"			: "%d дней назад",
-                                            "month"		 : "Около месяца назад",
-                                            "months"		: "%d месяцев назад",
-                                            "year"			: "Около года назад",
-                                            "years"		 : "%d лет назад"
-                                        }'></time>
+										<span class="text-secondary fs-7"><?=$task->created_at->format('d.m.y H:i')?></span>
+<!--										<time class="sow-util-timeago text-secondary fs-7"-->
+<!--													datetime="--><?php //=$task->created_at->format('Y-m-d\TH:i:d')?><!--"-->
+<!--													data-live="true"-->
+<!--													data-lang='{-->
+<!--                                            "seconds"	 : "Несколько секунд назад",-->
+<!--                                            "minute"		: "Около минуты назад",-->
+<!--                                            "minutes"	 : "%d минут назад",-->
+<!--                                            "hour"			: "Около часа назад",-->
+<!--                                            "hours"		 : "Около %d часов назад",-->
+<!--                                            "day"			 : "Вчера",-->
+<!--                                            "days"			: "%d дней назад",-->
+<!--                                            "month"		 : "Около месяца назад",-->
+<!--                                            "months"		: "%d месяцев назад",-->
+<!--                                            "year"			: "Около года назад",-->
+<!--                                            "years"		 : "%d лет назад"-->
+<!--                                        }'></time>-->
 									</div>
 								</div>
 								<div class="col-2 py-2 d-flex align-items-center">
@@ -98,12 +99,11 @@ $t3 = count($tasks->done);
                              data-ajax-update-url="assets/js/ajax/sort.php"
                              data-ajax-update-identifier="client_list_2"
                              data-ajax-update-params="['action','update']"
-                             data-update-toast-success="Order Saved!"
                              data-update-toast-position="bottom-center" data-type="2">
                             <?php foreach($tasks->work as $task): ?>
                                 <div data-id="<?=$task->id?>" class="row mx-3 bg-white text-dark list-item rounded-3 mb-2">
                                        <div class="align-items-center col-2 d-flex priority-flag" data-priority="<?=$task->priority?>">
-                                           <i class="fs-1 fi fi-spin fi-circle-spin text-primary fs-5"></i>
+                                           <i class="fs-1 fi fi-truck-speed text-primary fs-5"></i>
                                         </div>
                                     <div class="col py-2">
                                         <div class="row">
@@ -157,22 +157,40 @@ $t3 = count($tasks->done);
                         <div class="list-group sortable" data-shared-group="client-list"data-ajax-update-url="assets/js/ajax/sort.php"
 														 data-ajax-update-identifier="client_list_3"
 														 data-ajax-update-params="['action','update']"
-														 data-update-toast-success="Order Saved!"
 														 data-update-toast-position="bottom-center" data-type="3">
                             <?php foreach($tasks->done as $task): ?>
                                 <div data-id="<?=$task->id?>" class="row mx-3 bg-white text-dark rounded-3 mb-2 list-item">
                                     <div class="align-items-center col-2 d-flex priority-flag" data-priority="<?=$task->priority?>">
                                         <i class="fi fi-arrow-end-full fs-5 fs-5"></i>
                                     </div>
-                                    <div class="col py-2">
-                                        <div class="row">
-                                            <?=$task->title?>
-                                        </div>
-                                        <div class="row">
-                                            <!----><?php //=print_r((new \DateTime('now', new DateTimeZone('Europe/Moscow')))->diff($task->created_at)->format('%h:%i:%s'), 1)?>
-                                        </div>
-                                    </div>
-                                    <div class="col-2 py-2 my-auto">
+																	<div class="col py-2">
+																		<div class="row">
+																			<div>
+																				<?=$task->title?>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<span class="text-secondary fs-7"><?=$task->finished_at->format('d.m.y H:i')?></span>
+																			<!--										<time class="sow-util-timeago text-secondary fs-7"-->
+																			<!--													datetime="--><?php //=$task->created_at->format('Y-m-d\TH:i:d')?><!--"-->
+																			<!--													data-live="true"-->
+																			<!--													data-lang='{-->
+																			<!--                                            "seconds"	 : "Несколько секунд назад",-->
+																			<!--                                            "minute"		: "Около минуты назад",-->
+																			<!--                                            "minutes"	 : "%d минут назад",-->
+																			<!--                                            "hour"			: "Около часа назад",-->
+																			<!--                                            "hours"		 : "Около %d часов назад",-->
+																			<!--                                            "day"			 : "Вчера",-->
+																			<!--                                            "days"			: "%d дней назад",-->
+																			<!--                                            "month"		 : "Около месяца назад",-->
+																			<!--                                            "months"		: "%d месяцев назад",-->
+																			<!--                                            "year"			: "Около года назад",-->
+																			<!--                                            "years"		 : "%d лет назад"-->
+																			<!--                                        }'></time>-->
+																		</div>
+																	</div>
+
+																	<div class="col-2 py-2 my-auto">
                                         <button class="btn edit-task mx-n3" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i class="fi fi-search"></i></button>
 
                                     </div>
@@ -232,8 +250,9 @@ $t3 = count($tasks->done);
 					<div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select class="form-select" id="floatingSelect" name="responsible" aria-label="Floating label select example">
+															<option value="<?=$user->id?>"><?=$user->name?></option>
                                 <?php foreach($user->admissions as $a): ?>
-                                    <option value="<?=$user->id?>"><?=$user->name?></option>
+
                                     <?php if($a['adding']): ?>
                                         <option value="<?=$a['uid']?>"><?=$a['name']?></option>
                                     <?php endif; ?>
@@ -363,8 +382,9 @@ $t3 = count($tasks->done);
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <select class="form-select" id="floatingSelect" name="edit_responsible" aria-label="Floating label select example">
+																			<option value="<?=$user->id?>"><?=$user->name?></option>
                                         <?php foreach($user->admissions as $a): ?>
-                                            <option value="<?=$user->id?>"><?=$user->name?></option>
+
                                             <?php if($a['adding']): ?>
                                                 <option value="<?=$a['uid']?>"><?=$a['name']?></option>
                                             <?php endif; ?>
@@ -468,8 +488,9 @@ $t3 = count($tasks->done);
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
                                 <select disabled class="form-select" id="floatingSelect" name="edit_responsible" aria-label="Floating label select example">
+																	<option value="<?=$user->id?>"><?=$user->name?></option>
+
                                     <?php foreach($user->admissions as $a): ?>
-                                        <option value="<?=$user->id?>"><?=$user->name?></option>
                                         <?php if($a['adding']): ?>
                                             <option value="<?=$a['uid']?>"><?=$a['name']?></option>
                                         <?php endif; ?>

@@ -31,7 +31,7 @@ if($task->author != $_SESSION['user'] and $_POST['status'] == Task::ENDED)
     $user = new \models\User($task->created_by);
     $resp = new \models\User($_SESSION['user']);
     try {
-        sendEmail($user->email, $user->name, 'Задача пользователю '.$resp->name.' выполнена!'.PHP_EOL.'Текст: '.$task->text.PHP_EOL, 'Задача выполнена!');
+        sendEmail($user->email, $user->name, 'Задача пользователю '.$resp->name.' выполнена!'.PHP_EOL.'Текст: '.$task->text.PHP_EOL, 'Задача выполнена! (#'.$task->id.' '.$task->title);
         file_put_contents(__DIR__.'/0.txt', 'sended', FILE_APPEND);
     } catch (Exception $e)
     {

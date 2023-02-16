@@ -27,22 +27,9 @@
           .nav-deep-bordered  bordered links
 
         -->
-        <nav class="nav-deep nav-deep-sm nav-deep-light js-ajaxified mt-4">
+        <nav class="nav-deep nav-deep-sm nav-deep-light js-ajaxified">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-7">
-                                <img src="<?=PATH?>assets/images/default.png" class="img-fluid rounded-circle"alt="">
-                            </div>
-                            <div class="row text-center">
-                                <h4><?=$user->name?></h4>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
 
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=PATH?>profile/"  rel="noopener">
                         <svg width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
@@ -147,20 +134,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content container">
-            <form class="js-ajax bs-validate" novalidate
-                  action="<?=PATH?>assets/js/ajax/feedback.php"
-                  method="POST"
 
-                  data-ajax-container="#ajax_response_container"
-                  data-ajax-update-url="false"
-                  data-ajax-show-loading-icon="true"
-
-                  data-error-toast-text="<i class='fi fi-circle-spin fi-spin float-start'></i>Пожалуйста, заполните все обязательные поля!"
-                  data-error-toast-delay="3000"
-                  data-error-toast-position="top-center"
-
-                  data-error-scroll-up="true"
-                  data-ajax-callback-function="callback1">
+            <form action="">
 
                 <div class="row mx-auto p-4">
 
@@ -168,40 +143,28 @@
                         <h3>Написать в поддержку</h3>
                     </div>
 
-                    <div class="col-12 mb-3">
-                        <div class="form-floating">
-                            <input type="text" disabled id="fname" name="" class="form-control" value="<?=$user->name?>" placeholder="Имя">
-                            <label for="fname">Имя</label>
-                        </div>
-                        <input type="hidden" id="feedback_name" name="name" class="form-control" value="<?=$user->name?>">
-                        <input type="hidden" id="" name="id" class="form-control" value="<?=$user->id?>">
-                    </div>
-                    <div class="col-12 mb-3">
-                        <div class="form-floating">
-                            <input type="email" id="feedback_email" name="email" class="form-control" value="<?=$user->email?>" placeholder="Email">
-                            <label for="feedback_email">Email</label>
-                        </div>
+                    <div class="col-12 mb-4">
+                        <fieldset disabled>
+                        <input type="text" id="disabledTextInput" class="form-control" placeholder="<?=$user->name?>">
+                        </fieldset>
                     </div>
 
-                    <div class="col-12 mb-3">
-                        <div class="form-floating">
-                            <select class="form-select js-ajax" required name="type" aria-label="Default select example">
-                                <option value="1">Технический вопрос</option>
-                                <option value="2">Предложение по усовершенствованию планировщика</option>
-                                <option value="3">Вопрос разработчику</option>
-                            </select>
-                            <label for="floatingSelect">Тип обращения</label>
-                        </div>
-
+                    <div class="col-12 mb-4">
+                        <select class="form-select js-ajax" aria-label="Default select example">
+                            <option selected>Выберите тему обращения</option>
+                            <option value="1">Технический вопрос</option>
+                            <option value="2">Предложение по усовершенствованию планировщика</option>
+                            <option value="3">Вопрос разработчику</option>
+                        </select>
                     </div>
 
-                    <div class="col-12 mb-3">
-                        <textarea name="text" required id="editor-decr-new"class="summernote-editor w-100" style="height: 100px"
+                    <div class="col-12 mb-4">
+                        <textarea name="edit_descr" id="editor-decr-new"class="summernote-editor w-100"
                                   data-summernote-config='{
 						"placeholder":	"Описание обращения...",
 						"focus":		false,
 						"lang":			"en-US",
-						"minHeight":	 200,
+						"minHeight":	 300,
 						"maxHeight":	 1500,
 
 						" styleTags": ["h2","h3","h4","h5","h6"
@@ -254,10 +217,3 @@
     </div>
 </div>
 <!-- /Модальное для feedback -->
-
-<script>
-    function callback1(){
-        $('#feedback').modal('hide');
-        $.SOW.core.toast.show('success', '', 'Ваше обращение зарегистрировано', 'top-center', 4000, true);
-    }
-</script>
