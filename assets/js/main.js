@@ -127,11 +127,15 @@ $(document).ready(function () {
 	$('input#priority').on('change', function(){
 		$('span#priorityVal').text(getPriority($(this).val())[0])
 	});
-
+	$('.bg-filled').each(function( index ) {
+		$(this).addClass(getPriority($(this).data('priority'))[2]);
+		$(this).find('.priority-flag').remove();
+	});
 	//флаг приоритета
 	$('.priority-flag').each(function( index ) {
 		$(this).find('i').addClass(getPriority($(this).data('priority'))[1]);
 	});
+
 
 	//Заголовок задачи
 	$('.input-group-over').blur(function (e) {
@@ -249,24 +253,74 @@ $(document).ready(function () {
 
 
 
-	
+	$('.edit-admission-notes').on("click", function (e) {
+		let id = $(this).data('id');
+		let add_input = $('#edit-admission-notes').find('input[name="adding"]');
+		let comment_input = $('#edit-admission-notes').find('input[name="comment"]');
+		let aid_input = $('#edit-admission-notes').find('input[name="admission_id"]');
+		let uname_input = $('#edit-admission-notes').find('span.username');
+
+		comment_input.attr('checked', false);
+		add_input.attr('checked', false);
+
+		let add = $(this).data('add');
+		let comment = $(this).data('comm');
+		let user = $(this).data('user');
+
+		if(parseInt(comment) == 1)
+		{
+			$(comment_input).attr('checked', true);
+		}
+		if(add == 1)
+		{
+			add_input.attr('checked',true);
+		}
+		uname_input.text(user)
+		aid_input.val(id)
+
+
+		$('#edit-admission-notes').modal('show');
+	});
+	$('.edit-admissed-notes').on("click", function (e) {
+		let id = $(this).data('id');
+		let finish_input = $('#edit-admissed-notes').find('input[name="finished"]');
+		let aid_input = $('#edit-admissed-notes').find('input[name="admission_id"]');
+		let uname_input = $('#edit-admissed-notes').find('span.username');
+
+		finish_input.attr('checked', false);
+
+		let finish = $(this).data('finish');
+		let comment = $(this).data('comm');
+		let user = $(this).data('user');
+
+		if(parseInt(finish) == 1)
+		{
+			$(finish_input).attr('checked', true);
+		}
+		uname_input.text(user)
+		aid_input.val(id)
+
+
+		$('#edit-admissed-notes').modal('show');
+	});
+
 });
 
 function getPriority(number)
 {
 	if(number> 80)
 	{
-		return ['Очень высокий', 'text-red-900'];
+		return ['Очень высокий', 'text-red-900', 'card-red-theme'];
 	}
 	else if(number> 60)
 	{
-		return ['Высокий', 'text-danger'];
+		return ['Высокий', 'text-danger', 'card-warning-theme'];
 	}else if(number> 35)
 	{
-		return ['Средний', 'text-blue-500'];
+		return ['Средний', 'text-blue-500', 'card-middle-theme'];
 	}else
 	{
-		return ['Низкий', 'text-success'];
+		return ['Низкий', 'text-success', 'card-low-theme'];
 	}
 }
 

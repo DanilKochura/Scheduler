@@ -4,6 +4,7 @@ namespace models;
 
 use DateTimeZone;
 use Exception;
+use models\TaskModel;
 
 class Desk extends DB
 {
@@ -20,7 +21,7 @@ class Desk extends DB
 		parent::__construct();
 
 		$tasks = [];
-		foreach ([Task::NEW, Task::WORK, Task::ENDED] as $type)
+		foreach ([TaskModel::NEW, TaskModel::WORK, TaskModel::ENDED] as $type)
 		{
 			$res = $this->conn->query("SELECT * from tasks where status = '$type' and responsible = '$id' order by priority desc");
 
@@ -28,7 +29,7 @@ class Desk extends DB
 			{
 				while($row = $res->fetch_assoc())
 				{
-					$task = new Task();
+					$task = new TaskModel();
 					$task->text = $row['text'] ?: '';
 					$task->id = $row['id'];
 					$task->title = $row['title'];
@@ -46,8 +47,12 @@ class Desk extends DB
                         $user = $res1->fetch_object();
                         $task->author = $user->name; //." (".$user->email.")"
                     }
-					$tasks[$type][] = $task;
+					if($task->status = TaskModel::WORK)
+					{
+//						$task->isFrozen();
+					}
 
+					$tasks[$type][] = $task;
 
 
 				}

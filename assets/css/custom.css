@@ -52,5 +52,32 @@ body.dark-theme
 body.dark-theme>header, body.dark-theme aside
 {
     background-color: #181818!important;
+}
 
+.card-red-theme {
+    background-color: #c72a2a !important;
+}
+.card-red-theme .ml-red, .card-warning-theme .ml-red{
+    margin-left: 10px!important;
+}
+.card-red-theme #task_edit, .card-warning-theme #task_edit, .card-middle-theme #task_edit{
+    color: white !important;
+    opacity: .8!important;
+}
+.card-red-theme time, .card-warning-theme time, .card-middle-theme time, .card-red-theme time{
+    color: black!important;
+    opacity: .9!important;
+}
+
+
+.card-warning-theme{
+    background-color: #f57373!important;
+}
+
+.card-middle-theme{
+    background-color: #828eff!important;
+}
+
+.card-low-theme{
+    background-color: #c9e7d3!important;
 }

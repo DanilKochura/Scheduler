@@ -4,6 +4,7 @@ use models\DB;
 use models\Task;
 
 require '../../../config/config.php';
+require '../../../models/TaskModel.php';
 require '../../../models/Task.php';
 require '../../../models/User.php';
 //$_POST =
@@ -16,6 +17,6 @@ require '../../../models/User.php';
 $task = new Task();
 $task->get($_POST['id']);
 
-$task->title = $_POST['text'];
+$task->task->title = $_POST['text'];
 $task->save();
 echo 'succss';

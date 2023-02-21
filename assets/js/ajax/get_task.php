@@ -3,6 +3,8 @@ use models\DB;
 use models\Task;
 
 require '../../../config/config.php';
+require '../../../models/TaskModel.php';
+
 require '../../../models/Task.php';
 require '../../../models/User.php';
 
@@ -11,4 +13,4 @@ $task = (new Task())
 	->getComments();
 
 
-echo json_encode((array)$task);
+echo json_encode((array)$task->task);

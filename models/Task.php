@@ -7,50 +7,33 @@ use DateTimeZone;
 
 class Task extends DB
 {
-
-	public const NEW = 1;
-	public const WORK = 2;
-	public const ENDED = 3;
-
-	public int $id;
-	public string $title;
-	public string $text;
-	public string $author;
-	public int $responsibile;
-	public int $status;
-	public int $created_by;
-	public DateTime $time;
-	public DateTime $created_at;
-	public DateTime $updated_at;
-	public DateTime $finished_at;
-	public array $comments;
-
-	public int $priority;
+    public TaskModel $task;
 
 	public function __construct()
 	{
 		parent::__construct();
+        $this->task = new TaskModel();
 	}
 
 	public function add($title, $responsible, $text = '', $priority=5)
 	{
 			$uid = $_SESSION['user'];
 
-			$this->title= $title;
-			$this->responsibile= $responsible;
-			$this->text= $text;
-			$this->priority= $priority;
-			$this->status= self::NEW;
-			$this->status= self::NEW;
-			$this->conn->query("INSERT INTO tasks (`responsible`,`created_by`, `title`, `text`, `status`, `priority`, `time`) values('$responsible','$uid', '$title','$text', ".self::NEW.", '$priority', 0)");
-            $this->id = $this->conn->insert_id;
+			$this->task->title= $title;
+			$this->task->responsibile= $responsible;
+			$this->task->text= $text;
+			$this->task->priority= $priority;
+			$this->task->status= TaskModel::NEW;
+			$this->task->status= TaskModel::NEW;
+			$this->conn->query("INSERT INTO tasks (`responsible`,`created_by`, `title`, `text`, `status`, `priority`, `time`) values('$responsible','$uid', '$title','$text', ".TaskModel::NEW.", '$priority', 0)");
+            $this->task->id = $this->conn->insert_id;
 	}
 
 
 	public function save()
 	{
 
-        $this->conn->query("UPDATE `tasks` SET `responsible`='{$this->responsibile}',`created_by` = '$this->created_by', `title`='$this->title',`text`='$this->text',`status`='$this->status',`priority`='$this->priority' WHERE id = '$this->id'");
+        $this->conn->query("UPDATE `tasks` SET `responsible`='{$this->task->responsibile}',`created_by` = '{$this->task->created_by}', `title`='{$this->task->title}',`text`='{$this->task->text}',`status`='{$this->task->status}',`priority`='{$this->task->priority}' WHERE id = '{$this->task->id}'");
 	}
 
     public function get($id): Task
@@ -58,27 +41,27 @@ class Task extends DB
 
         $res = $this->conn->query("SELECT * FROM tasks where id = '$id'");
         $row = $res->fetch_assoc();
-        $this->text = $row['text'] ?: '';
-        $this->id = $row['id'];
-        $this->title = $row['title'];
-        $this->created_by = $row['created_by'];
-        $this->responsibile = $row['responsible'];
-        $this->status = $row['status'];
-        $this->time = new \DateTime($row['time'], new DateTimeZone('Europe/Moscow'));
-        $this->created_at = new \DateTime($row['created_at'], new DateTimeZone('Europe/Moscow'));
-        $this->updated_at = new \DateTime($row['updated_at'], new DateTimeZone('Europe/Moscow'));
-        $this->finished_at = new \DateTime($row['finished_at'], new DateTimeZone('Europe/Moscow'));
+        $this->task->text = $row['text'] ?: '';
+        $this->task->id = $row['id'];
+        $this->task->title = $row['title'];
+        $this->task->created_by = $row['created_by'];
+        $this->task->responsibile = $row['responsible'];
+        $this->task->status = $row['status'];
+        $this->task->time = new \DateTime($row['time'], new DateTimeZone('Europe/Moscow'));
+        $this->task->created_at = new \DateTime($row['created_at'], new DateTimeZone('Europe/Moscow'));
+        $this->task->updated_at = new \DateTime($row['updated_at'], new DateTimeZone('Europe/Moscow'));
+        $this->task->finished_at = new \DateTime($row['finished_at'], new DateTimeZone('Europe/Moscow'));
         if($row['created_by'] != $row['responsible'])
         {
-            $this->created_by = $row['created_by'];
+            $this->task->created_by = $row['created_by'];
             $res1 = $this->conn->query("SELECT `name`, `email` from users where id = '{$row['created_by']}'");
             if($res1->num_rows)
             {
                 $user = $res1->fetch_object();
-                $this->author = $user->name; //." (".$user->email.")"
+                $this->task->author = $user->name; //." (".$user->email.")"
             }
         }
-        $this->priority = $row['priority'];
+        $this->task->priority = $row['priority'];
 				return $this;
 
 
@@ -86,7 +69,7 @@ class Task extends DB
 
 	public function getComments(): Task
 	{
-		$res = $this->conn->query("SELECT * FROM `comments` join users on user_id=users.id WHERE task_id = '$this->id'");
+		$res = $this->conn->query("SELECT * FROM `comments` join users on user_id=users.id WHERE task_id = '{$this->task->id}'");
 		$comm = [];
 		if($res->num_rows > 0)
 		{
@@ -99,10 +82,26 @@ class Task extends DB
 				$comm[] = $arr;
 			}
 		}
-		$this->comments = $comm;
+		$this->task->comments = $comm;
 		return $this;
 
 	}
+
+	public function isFrozen()
+	{
+		$res = $this->conn->query("SELECT * from freezes where task_id = '{$this->task->id}' and date_to is NULL");
+//		dd($this->conn);
+		if($res->num_rows > 0)
+		{
+			$this->task->frozen = true;
+			return true;
+		}
+		$this->task->frozen = false;
+		return false;
+
+	}
+
+
 
 	public function __destruct()
 	{

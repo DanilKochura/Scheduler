@@ -3,8 +3,7 @@
 $t1 = count($tasks->new);
 $t2 = count($tasks->work);
 $t3 = count($tasks->done);
-
-?>
+    ?>
 
 	<div class="container">
 
@@ -21,12 +20,10 @@ $t3 = count($tasks->done);
 						</div>
 							<?php if($tasks->add): ?>
 								<div class="col text-end">
-                            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Добавить задачу">
-                                 <i class="fi fi-plus py-3 fs-5 text-warning" type="button"
-																		data-bs-toggle="modal" data-bs-target="#exampleModalMd">
-                            </i>
-                            </span>
-
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Добавить задачу">
+                                         <i class="fi fi-plus py-3 fs-5 text-warning" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalMd">
+                                         </i>
+                                    </span>
 
 								</div>
 
@@ -41,7 +38,7 @@ $t3 = count($tasks->done);
 												data-type="1">
 						<?php foreach($tasks->new as $task): ?>
 
-							<div data-id="<?=$task->id?>" data-title="<?=$task->title?>" class="row bg-white mb-2 mx-3 rounded-3 text-dark list-item">
+							<div data-id="<?=$task->id?>" data-title="<?=$task->title?>" data-priority="<?=$task->priority?>" class="row bg-white mb-2 mx-3 rounded-3 text-dark list-item <?=$set->filled ? 'bg-filled' : ''?>">
 								<div class="align-items-center col-2 d-flex priority-flag" data-priority="<?=$task->priority?>">
 									<i class="fi fi fi-arrow-end-full fs-5 fs-5"></i>
 								</div>
@@ -52,7 +49,7 @@ $t3 = count($tasks->done);
                                         </div>
 									</div>
 									<div class="row">
-										<span class="text-secondary fs-7"><?=$task->created_at->format('d.m.y H:i')?></span>
+										<time class="text-secondary fs-7"><?=$task->created_at->format('d.m.y H:i')?></time>
 <!--										<time class="sow-util-timeago text-secondary fs-7"-->
 <!--													datetime="--><?php //=$task->created_at->format('Y-m-d\TH:i:d')?><!--"-->
 <!--													data-live="true"-->
@@ -71,7 +68,7 @@ $t3 = count($tasks->done);
 <!--                                        }'></time>-->
 									</div>
 								</div>
-								<div class="col-2 py-2 d-flex align-items-center">
+								<div class="col-2 py-2 d-flex align-items-center mr-2-xs">
 									<?php if($tasks->edit): ?>
 										<i class="fi fi-search edit-task" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalTask"></i>
 
@@ -101,9 +98,9 @@ $t3 = count($tasks->done);
                              data-ajax-update-params="['action','update']"
                              data-update-toast-position="bottom-center" data-type="2">
                             <?php foreach($tasks->work as $task): ?>
-                                <div data-id="<?=$task->id?>" class="row mx-3 bg-white text-dark list-item rounded-3 mb-2">
+                                <div data-id="<?=$task->id?>" data-priority="<?=$task->priority?>" class="row mx-3 bg-white text-dark list-item rounded-3 mb-2 <?=$set->filled ? 'bg-filled' : ''?>">
                                        <div class="align-items-center col-2 d-flex priority-flag" data-priority="<?=$task->priority?>">
-                                           <i class="fs-1 fi fi-truck-speed text-primary fs-5"></i>
+                                           <i class="fi fi-arrow-right-3 text-primary fs-3"></i>
                                         </div>
                                     <div class="col py-2">
                                         <div class="row">
@@ -159,40 +156,39 @@ $t3 = count($tasks->done);
 														 data-ajax-update-params="['action','update']"
 														 data-update-toast-position="bottom-center" data-type="3">
                             <?php foreach($tasks->done as $task): ?>
-                                <div data-id="<?=$task->id?>" class="row mx-3 bg-white text-dark rounded-3 mb-2 list-item">
+                                <div data-id="<?=$task->id?>" data-priority="<?=$task->priority?>" class="row mx-3 bg-white text-dark rounded-3 mb-2 list-item <?=$set->filled ? 'bg-filled' : ''?>">
                                     <div class="align-items-center col-2 d-flex priority-flag" data-priority="<?=$task->priority?>">
                                         <i class="fi fi-arrow-end-full fs-5 fs-5"></i>
                                     </div>
-																	<div class="col py-2">
-																		<div class="row">
-																			<div>
-																				<?=$task->title?>
-																			</div>
-																		</div>
-																		<div class="row">
-																			<span class="text-secondary fs-7"><?=$task->finished_at->format('d.m.y H:i')?></span>
-																			<!--										<time class="sow-util-timeago text-secondary fs-7"-->
-																			<!--													datetime="--><?php //=$task->created_at->format('Y-m-d\TH:i:d')?><!--"-->
-																			<!--													data-live="true"-->
-																			<!--													data-lang='{-->
-																			<!--                                            "seconds"	 : "Несколько секунд назад",-->
-																			<!--                                            "minute"		: "Около минуты назад",-->
-																			<!--                                            "minutes"	 : "%d минут назад",-->
-																			<!--                                            "hour"			: "Около часа назад",-->
-																			<!--                                            "hours"		 : "Около %d часов назад",-->
-																			<!--                                            "day"			 : "Вчера",-->
-																			<!--                                            "days"			: "%d дней назад",-->
-																			<!--                                            "month"		 : "Около месяца назад",-->
-																			<!--                                            "months"		: "%d месяцев назад",-->
-																			<!--                                            "year"			: "Около года назад",-->
-																			<!--                                            "years"		 : "%d лет назад"-->
-																			<!--                                        }'></time>-->
-																		</div>
-																	</div>
+                                    <div class="col py-2">
+                                        <div class="row">
+                                            <div id="task_edit">
+                                                <?=$task->title?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <time class="text-secondary fs-7"><?=$task->finished_at->format('d.m.y H:i')?></time>
+                                            <!--										<time class="sow-util-timeago text-secondary fs-7"-->
+                                            <!--													datetime="--><?php //=$task->created_at->format('Y-m-d\TH:i:d')?><!--"-->
+                                            <!--													data-live="true"-->
+                                            <!--													data-lang='{-->
+                                            <!--                                            "seconds"	 : "Несколько секунд назад",-->
+                                            <!--                                            "minute"		: "Около минуты назад",-->
+                                            <!--                                            "minutes"	 : "%d минут назад",-->
+                                            <!--                                            "hour"			: "Около часа назад",-->
+                                            <!--                                            "hours"		 : "Около %d часов назад",-->
+                                            <!--                                            "day"			 : "Вчера",-->
+                                            <!--                                            "days"			: "%d дней назад",-->
+                                            <!--                                            "month"		 : "Около месяца назад",-->
+                                            <!--                                            "months"		: "%d месяцев назад",-->
+                                            <!--                                            "year"			: "Около года назад",-->
+                                            <!--                                            "years"		 : "%d лет назад"-->
+                                            <!--                                        }'></time>-->
+                                        </div>
+                                    </div>
 
-																	<div class="col-2 py-2 my-auto">
-                                        <button class="btn edit-task mx-n3" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i class="fi fi-search"></i></button>
-
+                                    <div class="col-2 py-2 my-auto mr-2-xs">
+                                         <button class="btn edit-task mx-n3" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i class="fi fi-search"></i></button>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -369,7 +365,7 @@ $t3 = count($tasks->done);
 
                             function callback_refresh()
                             {
-                                setTimeout(window.location.reload(), 5000);
+                                // setTimeout(window.location.reload(), 5000);
                             }
                         </script>
                         <div class="form-floating mb-3">

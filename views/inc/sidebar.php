@@ -27,9 +27,22 @@
           .nav-deep-bordered  bordered links
 
         -->
-        <nav class="nav-deep nav-deep-sm nav-deep-light js-ajaxified">
+        <nav class="nav-deep nav-deep-sm nav-deep-light js-ajaxified mt-4">
             <ul class="nav flex-column">
+                <li class="nav-item">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-7">
+                                <img src="<?=PATH?>assets/images/default.png" class="img-fluid rounded-circle"alt="">
+                            </div>
+                            <div class="row text-center">
+                                <h4><?=$user->name?></h4>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
 
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?=PATH?>profile/"  rel="noopener">
                         <svg width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
@@ -47,6 +60,15 @@
                             <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
                         </svg>
                         <span>Настройки задач</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=PATH?>profile/notifications">
+                        <svg width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
+                            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
+                        </svg>
+                        <span>Уведомления</span>
                     </a>
                 </li>
 
@@ -134,8 +156,20 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content container">
+            <form class="js-ajax bs-validate" novalidate
+                  action="<?=PATH?>assets/js/ajax/feedback.php"
+                  method="POST"
 
-            <form action="">
+                  data-ajax-container="#ajax_response_container"
+                  data-ajax-update-url="false"
+                  data-ajax-show-loading-icon="true"
+
+                  data-error-toast-text="<i class='fi fi-circle-spin fi-spin float-start'></i>Пожалуйста, заполните все обязательные поля!"
+                  data-error-toast-delay="3000"
+                  data-error-toast-position="top-center"
+
+                  data-error-scroll-up="true"
+                  data-ajax-callback-function="callback1">
 
                 <div class="row mx-auto p-4">
 
@@ -143,28 +177,40 @@
                         <h3>Написать в поддержку</h3>
                     </div>
 
-                    <div class="col-12 mb-4">
-                        <fieldset disabled>
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="<?=$user->name?>">
-                        </fieldset>
+                    <div class="col-12 mb-3">
+                        <div class="form-floating">
+                            <input type="text" disabled id="fname" name="" class="form-control" value="<?=$user->name?>" placeholder="Имя">
+                            <label for="fname">Имя</label>
+                        </div>
+                        <input type="hidden" id="feedback_name" name="name" class="form-control" value="<?=$user->name?>">
+                        <input type="hidden" id="" name="id" class="form-control" value="<?=$user->id?>">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="form-floating">
+                            <input type="email" id="feedback_email" name="email" class="form-control" value="<?=$user->email?>" placeholder="Email">
+                            <label for="feedback_email">Email</label>
+                        </div>
                     </div>
 
-                    <div class="col-12 mb-4">
-                        <select class="form-select js-ajax" aria-label="Default select example">
-                            <option selected>Выберите тему обращения</option>
-                            <option value="1">Технический вопрос</option>
-                            <option value="2">Предложение по усовершенствованию планировщика</option>
-                            <option value="3">Вопрос разработчику</option>
-                        </select>
+                    <div class="col-12 mb-3">
+                        <div class="form-floating">
+                            <select class="form-select js-ajax" required name="type" aria-label="Default select example">
+                                <option value="1">Технический вопрос</option>
+                                <option value="2">Предложение по усовершенствованию планировщика</option>
+                                <option value="3">Вопрос разработчику</option>
+                            </select>
+                            <label for="floatingSelect">Тип обращения</label>
+                        </div>
+
                     </div>
 
-                    <div class="col-12 mb-4">
-                        <textarea name="edit_descr" id="editor-decr-new"class="summernote-editor w-100"
+                    <div class="col-12 mb-3">
+                        <textarea name="text" required id="editor-decr-new"class="summernote-editor w-100" style="height: 100px"
                                   data-summernote-config='{
 						"placeholder":	"Описание обращения...",
 						"focus":		false,
 						"lang":			"en-US",
-						"minHeight":	 300,
+						"minHeight":	 200,
 						"maxHeight":	 1500,
 
 						" styleTags": ["h2","h3","h4","h5","h6"
@@ -217,3 +263,10 @@
     </div>
 </div>
 <!-- /Модальное для feedback -->
+
+<script>
+    function callback1(){
+        $('#feedback').modal('hide');
+        $.SOW.core.toast.show('success', '', 'Ваше обращение зарегистрировано', 'top-center', 4000, true);
+    }
+</script>

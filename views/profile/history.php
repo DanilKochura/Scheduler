@@ -52,6 +52,7 @@
                     <th>Дата завершения</th>
                     <th>Автор</th>
                     <th>Приоритет</th>
+                    <th>Комментарий</th>
                 </tr>
             </thead>
 
@@ -59,10 +60,11 @@
                 <?php foreach($tasks as $task): ?>
                     <tr>
                         <td><?=$task->title?></td>
-                        <td><?=$task->created_at?></td> <!-- <$task->created_at->format('Y-m-d\TH:i:d')> Там специально с ошибкой вставлено, что бы закомментировать получилось-->
+                        <td><?=$task->created_at?></td>
                         <td><?=$task->finished_at?></td>
                         <td><?=$task->created_by?></td>
                         <td><?=$task->priority?></td>
+                        <td>[В разработке]</td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
