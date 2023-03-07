@@ -21,6 +21,7 @@ class TaskModel
     public DateTime $created_at;
     public DateTime $updated_at;
     public DateTime $finished_at;
+    public ?DateTime $deadline;
     public array $comments;
 
     public int $priority;

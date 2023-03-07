@@ -6,7 +6,7 @@
            <p>Страница находится в разработке</p>
             <!--
                        <div class="container">
-                           <div class="row rad-10 p-3 bg-white"> <!--style="background-color: #edebff;"
+                           <div class="row rad-10 p-3 bg-white" style="background-color: #edebff;"
 
 
                     <div class="col-1 my-auto text-center">

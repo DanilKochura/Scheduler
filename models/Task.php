@@ -15,17 +15,16 @@ class Task extends DB
         $this->task = new TaskModel();
 	}
 
-	public function add($title, $responsible, $text = '', $priority=5)
+	public function add($title, $responsible, $text = '', $priority=5, $deadline = null)
 	{
 			$uid = $_SESSION['user'];
-
 			$this->task->title= $title;
 			$this->task->responsibile= $responsible;
 			$this->task->text= $text;
 			$this->task->priority= $priority;
 			$this->task->status= TaskModel::NEW;
 			$this->task->status= TaskModel::NEW;
-			$this->conn->query("INSERT INTO tasks (`responsible`,`created_by`, `title`, `text`, `status`, `priority`, `time`) values('$responsible','$uid', '$title','$text', ".TaskModel::NEW.", '$priority', 0)");
+			$this->conn->query("INSERT INTO tasks (`responsible`,`created_by`, `title`, `text`, `status`, `priority`, `time`, `deadline`) values('$responsible','$uid', '$title','$text', ".TaskModel::NEW.", '$priority', 0, '$deadline')");
             $this->task->id = $this->conn->insert_id;
 	}
 
@@ -51,6 +50,7 @@ class Task extends DB
         $this->task->created_at = new \DateTime($row['created_at'], new DateTimeZone('Europe/Moscow'));
         $this->task->updated_at = new \DateTime($row['updated_at'], new DateTimeZone('Europe/Moscow'));
         $this->task->finished_at = new \DateTime($row['finished_at'], new DateTimeZone('Europe/Moscow'));
+        $this->task->deadline = new \DateTime($row['deadline'], new DateTimeZone('Europe/Moscow'));
         if($row['created_by'] != $row['responsible'])
         {
             $this->task->created_by = $row['created_by'];

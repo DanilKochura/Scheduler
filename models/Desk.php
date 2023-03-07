@@ -23,7 +23,7 @@ class Desk extends DB
 		$tasks = [];
 		foreach ([TaskModel::NEW, TaskModel::WORK, TaskModel::ENDED] as $type)
 		{
-			$res = $this->conn->query("SELECT * from tasks where status = '$type' and responsible = '$id' order by priority desc");
+			$res = $this->conn->query("SELECT * from tasks where status = '$type' and responsible = '$id' order by priority, deadline desc");
 
 			if($res->num_rows > 0)
 			{
@@ -40,6 +40,13 @@ class Desk extends DB
 					$task->updated_at = new \DateTime($row['updated_at'], new DateTimeZone('Europe/Moscow'));
 					$task->finished_at = new \DateTime($row['finished_at'], new DateTimeZone('Europe/Moscow'));
 					$task->priority = $row['priority'];
+					if($row['deadline'] and $row['deadline'] != '0000-00-00 00:00:00')
+					{
+						$task->deadline = new \DateTime($row['deadline'], new DateTimeZone('Europe/Moscow'));
+					} else
+					{
+						$task->deadline = null;
+					}
 					$diff = (new \DateTime('now', new DateTimeZone('Europe/Moscow')))->diff($task->created_at);
                     if($row['created_by'] != $_SESSION['user'])
                     {

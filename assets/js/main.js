@@ -48,6 +48,11 @@ $(document).ready(function () {
 // create an observer instance
 			observer = new MutationObserver(function(mutation, observer) {
 				let id = $(mutation[0].addedNodes[0]).data('id');
+				if($(mutation[0].addedNodes[0]).length == 0)
+				{
+					console.log('a');
+					return;
+				}
 				$.ajax(
 					{
 						url: 'https://imdibil.ru/scheduler/assets/js/ajax/change_status.php',

@@ -5,111 +5,32 @@ $adm = $user->getAccesssedUsers();
 
 <div id="wrapper">
     <?php include ROOT.'views/inc/sidebar.php'; ?>
-    <main class="w-100">
-        <div class="container p-3 py-4">
-            <h2>Редактировать доступы</h2>
-            <div class="row">
-                <table class="table-datatable table table-bordered table-hover table-striped"
-                       data-lng-empty="No data available in table"
-                       data-lng-page-info="Отображается _START_ из _END_ на _TOTAL_ странице"
-                       data-lng-filtered="(filtered from _MAX_ total entries)"
-                       data-lng-loading="Загрузка..."
-                       data-lng-processing="Подождите немного..."
-                       data-lng-search="Поиск..."
-                       data-lng-norecords="Я ничего не нашел :("
-                       data-lng-sort-ascending=": activate to sort column ascending"
-                       data-lng-sort-descending=": activate to sort column descending"
+    <?php if($user->id == 45): ?>
+			<div class="container mt-2">
+				<h2>Настройки задач</h2>
 
-                       data-main-search="true"
-                       data-column-search="false"
-                       data-row-reorder="false"
-                       data-col-reorder="true"
-                       data-responsive="true"
-                       data-header-fixed="true"
-                       data-enable-paging="true"
-                       data-enable-col-sorting="true"
-                       data-autofill="false"
-                       data-group="false"
-                       data-items-per-page="30"
-
-                       data-enable-column-visibility="true"
-                       data-lng-column-visibility="Отображение столбцов"
-
-                       data-enable-export="false"
-                       data-lng-export="<i class='fi fi-squared-dots fs-5 lh-1'></i>"
-                       data-lng-csv="CSV"
-                       data-lng-pdf="PDF"
-                       data-lng-xls="XLS"
-                       data-lng-copy="Копировать"
-                       data-lng-print="Печать"
-                       data-lng-all="Все"
-                       data-export-pdf-disable-mobile="true"
-                       data-export='["csv", "pdf", "xls"]'
-                       data-options='["copy", "print"]'
-
-                       data-custom-config='{}'>
-                    <thead>
-                    <tr>
-                        <th>Имя</th>
-                        <th>Почта</th>
-                        <th>Добавление</th>
-                        <th>Редактирование</th>
-                        <th>Комментирование</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($adm as $admission): ?>
-                        <tr>
-                            <td><?=$admission['name']?></td>
-                            <td><?=$admission['email']?></td>
-                            <td><i class="fi fi-<?=$admission['adding'] == 1 ? 'plus text-success' : 'minus text-danger'?>"></i></td>
-                            <td><i class="fi fi-<?=$admission['edit'] == 1 ? 'plus text-success' : 'minus text-danger'?>"></i></td>
-                            <td><i class="fi fi-<?=$admission['comment'] == 1 ? 'plus text-success' : 'minus text-danger'?>"></i></td>
-                            <td><a href="#" class="edit-admission" data-id="<?=$admission['aid']?>"
-                                   data-add="<?=$admission['adding']?>"
-                                   data-edit="<?=$admission['edit']?>"
-                                   data-comment="<?=$admission['comment']?>"
-                                   data-user="<?=$admission['email']?>"
-                                   data-userid="<?=$admission['uid']?>">
-                                    <i class="fi fi-pencil edit-admission text-dark"
-
-                                    ></i>
-                                </a>
-                            </td>
-                            <td><a href="#" data-href="https://imdibil.ru/scheduler/assets/js/ajax/delete_adm.php?id=<?=$admission['aid']?>"
-                                   class="js-ajax-confirm"
-
-                                   data-ajax-confirm-mode="ajax"
-                                   data-ajax-confirm-method="POST"
-                                   data-ajax-params = "[test, 1]"
-                                   data-ajax-confirm-title="Подтвердите удаление!"
-                                   data-ajax-confirm-body="Уверены, что хотите закрыть пользоваелю доступ к вашей доске?"
-
-                                   data-ajax-confirm-btn-yes-class="btn-sm btn-primary"
-                                   data-ajax-confirm-btn-yes-text="Подтвердить"
-                                   data-ajax-confirm-btn-yes-icon="fi fi-check"
-
-                                   data-ajax-confirm-btn-no-class="btn-sm btn-light"
-                                   data-ajax-confirm-btn-no-text="Закрыть"
-                                   data-ajax-confirm-btn-no-icon="fi fi-close"
-                                   data-ajax-confirm-type="danger"
-                                   data-ajax-confirm-callback-function="redirect_5">
-                                    <i class="fi fi-thrash text-danger"></i>
-                                </a></td>
-                        </tr>
-
-                    <?php endforeach; ?>
-                    </tbody>
-
-                </table>
-            </div>
-            <div class="row">
-                <button type="button"class="btn btn-warning mx-3 w-100-xs w-25" data-bs-toggle="modal" data-bs-target="#add-admission">Добавить пользователя</button>
-            </div>
-        </div>
-    </main>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="row">
+						<label class="d-flex align-items-center mb-3">
+							<input class="d-none-cloaked js-ajax" type="checkbox" name="bg-fill" value="1" ">
+							<i class="switch-icon"></i>
+							<span class="px-3 user-select-none">Использовать дедлайны</span>
+						</label>
+					</div>
+					<div class="row">
+						<select class="form-select form-select-sm" id="deadline-select" aria-label="Default select example">
+							<option selected>Уведомлять за</option>
+							<option value="1">1 час</option>
+							<option value="2">6 часов</option>
+							<option value="3">12 часов</option>
+							<option value="3">12 часов</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			</div>
+		<?php endif; ?>
 </div>
 
 

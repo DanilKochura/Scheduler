@@ -55,12 +55,12 @@ body.dark-theme>header, body.dark-theme aside
 }
 
 .card-red-theme {
-    background-color: #c72a2a !important;
+    background-color: #ff6c6c!important;
 }
 .card-red-theme .ml-red, .card-warning-theme .ml-red{
     margin-left: 10px!important;
 }
-.card-red-theme #task_edit, .card-warning-theme #task_edit, .card-middle-theme #task_edit{
+.card-red-theme {
     color: white !important;
     opacity: .8!important;
 }
@@ -71,11 +71,11 @@ body.dark-theme>header, body.dark-theme aside
 
 
 .card-warning-theme{
-    background-color: #f57373!important;
+    background-color: #ffb9b9!important;
 }
 
 .card-middle-theme{
-    background-color: #828eff!important;
+    background-color: #bfc5ff!important;
 }
 
 .card-low-theme{

@@ -69,11 +69,11 @@ class User extends DB
     {
         $rr = [];
         $res = $this->conn->query("SELECT * from (
-    SELECT COUNT(*) as co, date(created_at) as date, status from tasks where status = 1 and datediff(CURRENT_TIMESTAMP, created_at) < 30 and responsible = '$this->id' GROUP BY created_at
+    SELECT COUNT(*) as co, date(created_at) as date, 1 as status from tasks where  datediff(CURRENT_TIMESTAMP, created_at) < 30 and responsible = '$this->id' GROUP BY date
 UNION
-SELECT   COUNT(*) as co, date(updated_at) as date, status from tasks where status = 2 and datediff(CURRENT_TIMESTAMP, updated_at) < 30 and responsible = '$this->id' GROUP BY updated_at
+SELECT   COUNT(*) as co, date(updated_at) as date, 2 as status from tasks where  datediff(CURRENT_TIMESTAMP, updated_at) < 30 and responsible = '$this->id' GROUP BY date
 UNION
-SELECT  COUNT(*) as co, date(finished_at) as date, status from tasks where status = 3 and datediff(CURRENT_TIMESTAMP, finished_at) < 30 and responsible = '$this->id' GROUP BY finished_at
+SELECT  COUNT(*) as co, date(finished_at) as date, 3 as status from tasks where datediff(CURRENT_TIMESTAMP, finished_at) < 30 and responsible = '$this->id' GROUP BY date
 ) as s order by date");
         while($row = $res->fetch_object())
         {
