@@ -25,7 +25,12 @@ $task = new Task();
 $deadline = null;
 if($_POST['date'])
 {
+
 	$deadline = date('Y-m-d H:i:s', strtotime($_POST['date'].' '.$_POST['hours'].':'.$_POST['minutes']));
+	if($deadline  < date('Y-m-d H:i:s'))
+	{
+		$deadline = null;
+	}
 }
 $task->add($_POST['TaskTitle'],$_POST['responsible'],$_POST['descr'],$_POST['priority'], $deadline);
 

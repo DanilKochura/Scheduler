@@ -24,7 +24,7 @@ class Task extends DB
 			$this->task->priority= $priority;
 			$this->task->status= TaskModel::NEW;
 			$this->task->status= TaskModel::NEW;
-			$this->conn->query("INSERT INTO tasks (`responsible`,`created_by`, `title`, `text`, `status`, `priority`, `time`, `deadline`) values('$responsible','$uid', '$title','$text', ".TaskModel::NEW.", '$priority', 0, '$deadline')");
+			$this->conn->query("INSERT INTO tasks (`responsible`,`created_by`, `title`, `text`, `status`, `priority`, `time`, `deadline`) values('$responsible','$uid', '$title','$text', ".TaskModel::NEW.", '$priority', 0, ".($deadline != null ? "'".$deadline."'" : "NULL").")");
             $this->task->id = $this->conn->insert_id;
 	}
 

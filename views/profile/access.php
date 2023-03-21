@@ -55,6 +55,7 @@ $adm = $user->getAccesssedUsers();
 						<th>Добавление</th>
 						<th>Редактирование</th>
 						<th>Комментирование</th>
+						<th>Дедлайны</th>
                         <th></th>
                         <th></th>
 					</tr>
@@ -67,9 +68,11 @@ $adm = $user->getAccesssedUsers();
                             <td><i class="fi fi-<?=$admission['adding'] == 1 ? 'plus text-success' : 'minus text-danger'?>"></i></td>
                             <td><i class="fi fi-<?=$admission['edit'] == 1 ? 'plus text-success' : 'minus text-danger'?>"></i></td>
                             <td><i class="fi fi-<?=$admission['comment'] == 1 ? 'plus text-success' : 'minus text-danger'?>"></i></td>
+                            <td><i class="fi fi-<?=$admission['deadlines'] == 1 ? 'plus text-success' : 'minus text-danger'?>"></i></td>
                             <td><a href="#" class="edit-admission" data-id="<?=$admission['aid']?>"
                                    data-add="<?=$admission['adding']?>"
                                    data-edit="<?=$admission['edit']?>"
+                                   data-dead="<?=$admission['deadlines']?>"
                                    data-comment="<?=$admission['comment']?>"
                                    data-user="<?=$admission['email']?>"
                                    data-userid="<?=$admission['uid']?>">
@@ -140,6 +143,11 @@ $adm = $user->getAccesssedUsers();
                         <input class="d-none-cloaked" type="checkbox" name="comment" value="1" >
                         <i class="switch-icon"></i>
                         <span class="px-3 user-select-none">Комментирование</span>
+                    </label>
+									<label class="d-flex align-items-center mb-3">
+                        <input class="d-none-cloaked" type="checkbox" name="deadlines" value="1" >
+                        <i class="switch-icon"></i>
+                        <span class="px-3 user-select-none">Дедлайны</span>
                     </label>
                 </div>
 

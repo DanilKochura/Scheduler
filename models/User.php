@@ -40,7 +40,7 @@ class User extends DB
 	}
     public function getAccesssedUsers($id = null)
     {
-        $q = "SELECT user_admissions.id as aid, users.id as uid, `user_to`, `adding`, `edit`, `comment`, `name`, `email`, `add_note`, `comm_note` FROM `user_admissions` join users on user_to = users.id where user_from = '$this->id'";
+        $q = "SELECT user_admissions.id as aid, users.id as uid, `user_to`, `adding`, `edit`, `comment`, `name`, `email`, `add_note`, `comm_note`, `deadlines` FROM `user_admissions` join users on user_to = users.id where user_from = '$this->id'";
         if($id)
         {
             $q.=" AND user_to = '$id'";

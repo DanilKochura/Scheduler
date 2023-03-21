@@ -125,7 +125,7 @@ if(!in_array($routed_file, ['login.php', 'signup.php', 'reset.php']))
     $set->get($did);
     if($set->picture and $routed_file == 'index.php')
     {
-        echo "<style>body{background: url(https://imdibil.ru/scheduler/assets/images/uploads/".$set->picture.") no-repeat; background-size: cover;backdrop-filter: blur(0px); background-attachment: fixed; }</style>";
+        echo "<style>body{background: url(https://imdibil.ru/scheduler/assets/images/uploads/".$set->picture.") no-repeat; background-size: cover; background-attachment: fixed; }</style>";
     }
 }
 $tasks = new \models\Desk($did);
